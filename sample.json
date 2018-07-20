@@ -2,12 +2,12 @@
     "data":[
         {
             "test": "t1",
-            "status": "s1",
+            "status": true,
             "last": true
         },
         {
             "test": "t2",
-            "status": "s2",
+            "status": true,
             "last": false
         }
     ]

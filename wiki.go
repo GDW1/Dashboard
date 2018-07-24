@@ -28,12 +28,6 @@ type compiledData struct {
 	Last    []string
 }
 
-const tmpl = `
-	{{.Test}}
-	{{.Status}}
-	{{.Last}}
-`
-
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	jsonFile, err := os.Open("sample.json")
 	if err != nil {
@@ -59,10 +53,8 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	f.NumTest = len(udata.UserData)
-	//b, _ := template.ParseFiles("Index.html")
-	t := template.Must(template.New("tmpl").Parse(tmpl))
-
-	t.Execute(w, f)
+	b, _ := template.ParseFiles("Index.html")
+	b.Execute(w, f)
 
 }
 

@@ -29,6 +29,7 @@ type compiledData struct {
 }
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
+
 	jsonFile, err := os.Open("sample.json")
 	if err != nil {
 		fmt.Println(err)
@@ -42,7 +43,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 
 	var f compiledData
 	for i := 0; i < len(udata.UserData); i++ {
-		for e := 1; e <= 3; e++ {
+		for e := 1; e < 3; e++ {
 			if e == 1 {
 				f.Test = append(f.Test, udata.UserData[i].Test)
 			} else if e == 2 {

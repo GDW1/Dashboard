@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <title>Dashboard</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,16 +6,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+     
     .row.content {height: 550px}
     
-    /* Set gray background color and 100% height */
+     
     .sidenav {
       background-color: #f1f1f1;
       height: 500%;
     }
         
-    /* On small screens, set height to 'auto' for the grid */
+     
     @media screen and (max-width: 767px) {
       .row.content {height: auto;} 
     }
@@ -53,89 +51,133 @@
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
-      <img id='logo'src="https://cybersecurity-excellence-awards.com/wp-content/uploads/2017/06/598614.png" alt="Trulli" width="350" height="100" >
+      <img id="logo" src="https://cybersecurity-excellence-awards.com/wp-content/uploads/2017/06/598614.png" alt="Trulli" width="350" height="100">
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">Dashboard</a></li>
-       <!--<li><a href="#section2">Age</a></li>
-        <li><a href="#section3">Gender</a></li>
-        <li><a href="#section3">Geo</a></li>-->
+       
       </ul><br>
     </div>
     <br>
     
     <div class="col-sm-9">
       <div class="well">
-        <h1>Dashboard: All current tests</h4>
+        <h1>Dashboard: All current tests</h1>
       </div>
       <div class="row">
         <div class="col-sm-3">
           <div class="well">
             <h4>Current Tests Going On</h4>
-            <p>{{.NumTest}}</p>
+            <p>6</p>
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4><!--Place text here --></h4>
-            <p><!--Place text here --></p> 
+            <h4></h4>
+            <p></p> 
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4><!--Place text here --></h4>
-            <p><!--Place text here --></p> 
+            <h4></h4>
+            <p></p> 
           </div>
         </div>
         <div class="col-sm-3">
           <div class="well">
-            <h4><!--Place text here --></h4>
-            <p><!--Place text here --></p> 
+            <h4></h4>
+            <p></p> 
+          </div>
+        </div>
+      </div>
+      
+<div class="row">
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Test: {{index .Test 0}}</p>
+            <p>Status: {{index .Status 0}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 0}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Test: {{index .Test 1}}</p>
+            <p>Status: {{index .Status 1}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 1}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Test: {{index .Test 2}}</p>
+            <p>Status: {{index .Status 2}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 2}}</p> 
+          </div>
+        </div>
+      </div><div class="row">
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Test: {{index .Test 3}}</p>
+            <p>Status: {{index .Status 3}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 3}}</p>  
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Test: {{index .Test 4}}</p>
+            <p>Status: {{index .Status 4}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 4}}</p> 
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+           <p>Test: {{index .Test 5}}</p>
+            <p>Status: {{index .Status 5}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 5}}</p> 
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="well">
-            <p>Test </p> 
-            <p>Status</p> 
-            <p>Last Attmept Succeded?</p> 
+            <p>Test: {{index .Test 6}}</p>
+            <p>Status: {{index .Status 6}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 6}}</p>  
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Test</p> 
-            <p>Status</p> 
-            <p>Last Attmept Succeded?</p>
+           <p>Test: {{index .Test 7}}</p>
+            <p>Status: {{index .Status 7}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 7}}</p> 
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Test</p> 
-            <p>Status</p> 
-            <p>Last Attmept Succeded?</p>
+            <p>Test: {{index .Test 8}}</p>
+            <p>Status: {{index .Status 8}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 8}}</p> 
           </div>
         </div>
       </div>
-      <div class="row">
+<div class="row">
         <div class="col-sm-4">
           <div class="well">
-            <p>Test</p> 
-            <p>Status</p> 
-            <p>Last Attmept Succeded?</p> 
+            <p>Test: {{index .Test 9}}</p>
+            <p>Status: {{index .Status 9}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 9}}</p> 
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Test</p> 
-            <p>Status</p> 
-            <p>Last Attmept Succeded?</p>
+            <p>Test: {{index .Test 10}}</p>
+            <p>Status: {{index .Status 10}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 10}}</p> 
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Test</p> 
-            <p>Status</p> 
-            <p>Last Attmept Succeded?</p>
+            <p>Test: {{index .Test 11}}</p>
+            <p>Status: {{index .Status 11}}</p> 
+            <p>Last Attmept Succeded? {{index .Last 11}}</p> 
           </div>
         </div>
       </div>
@@ -143,5 +185,6 @@
   </div>
 </div>
 
-</body>
-</html>
+
+
+</body></html>

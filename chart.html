@@ -1,0 +1,133 @@
+<html>
+  <head>
+      <style>
+            .chartgo{
+                font-size: 1.15em;
+                padding: 4em;
+                font-family: 'Times New Roman', Times, serif;
+            }
+            
+        </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', "value"],//{{.timeActivated}}],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Tests',
+            subtitle: 'Green: pass ; red: failed',
+          },
+          colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+      function load(){
+          window.location('https://google.com');
+      }
+        document.getElementById("1").addEventListener("click", window.location('https://google.com'));
+
+    </script>
+  </head>
+  <body>
+    <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a> 
+ <a href='https://google.com' onclick="load()" type='button' id='1' class='chartGo'>{{.test}}</a>
+    <div id="barchart" style="width: 9000px; height: 500px;"></div>
+    <script>
+       var btn = document.getElementById("1").addEventListener("click", function(){ window.location('https://google.com'); });
+       function load(){
+          window.location('https://google.com');
+      }
+       btn.onclick(window.location('https://google.com'))
+    </script>
+  </body>
+
+</html>

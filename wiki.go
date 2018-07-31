@@ -1,37 +1,26 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
+	"time"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
-type udata struct {
-	UserData []data `json:"data"`
+type graphData struct {
+	Test        string
+	testStatus  bool
+	id          string
+	timeStarted time.Time
+	timeEnded   string // this should eventually become time.Time. However, this is only sample data and no tests were actully running
 }
 
-type data struct {
-	//	NumTest int
-	Test   string `json:"test"`
-	Status string `json:"status"`
-	Last   string `json:"last"`
-}
+const tmpl = `<html lang="en">  
 
-type compiledData struct {
-	NumTest int
-	Test    []string
-	Status  []string
-	Last    []string
-}
-
-const tmpl = `<html lang="en">
 	<head>
   <title>Dashboard</title>
   <meta charset="utf-8">
@@ -58,9 +47,94 @@ const tmpl = `<html lang="en">
         padding-left: 21px;
     }
   </style>
-</head>
-<body>
-<nav class="navbar navbar-inverse visible-xs">
+  
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+  	function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', "value"],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t1', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000],
+          ['t2', 1000],
+          ['t3', 1000],
+          ['t4', 1000]
+        ]);
+
+        var options = {
+          chart: {
+            title: 'Tests',
+            subtitle: 'Green: pass ; red: failed',
+          },
+          colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'],
+          bars: 'vertical' // Required for Material Bar Charts.
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('barchart'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+	
+  </script>
+  </head>
+  <body>
+  <nav class="navbar navbar-inverse visible-xs">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -79,8 +153,8 @@ const tmpl = `<html lang="en">
       </ul>
     </div>
   </div>
-</nav>
-<div class="container-fluid">
+  </nav>
+  <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav hidden-xs">
       <img id="logo" src="https://cybersecurity-excellence-awards.com/wp-content/uploads/2017/06/598614.png" alt="Trulli" width="350" height="100">
@@ -99,7 +173,7 @@ const tmpl = `<html lang="en">
         <div class="col-sm-3">
           <div class="well">
             <h4>Current Tests Going On</h4>
-            <p>6</p>
+            <p>6(not actual number)</p>
           </div>
         </div>
         <div class="col-sm-3">
@@ -121,18 +195,19 @@ const tmpl = `<html lang="en">
           </div>
         </div>
       </div>
-      
-<div class="row">
+          <div id="barchart" style="width: 9000px; height: 500px;"></div>
+
+  <div class="row">
         <div class="col-sm-4">
           <div class="well">
-            <p>Test: {{ .Test}}</p>
+            <a href = 'https://google.com'>Test: {{ .Test}}</a>
             <p>Status: {{index .Status 0}}</p> 
             <p>Last Attmept Succeded? {{index .Last 0}}</p> 
           </div>
         </div>
         <div class="col-sm-4">
           <div class="well">
-            <p>Test: {{index .Test 1}}</p>
+            <a href = 'google.com'>Test: {{index .Test 1}}</a>
             <p>Status: {{index .Status 1}}</p> 
             <p>Last Attmept Succeded? {{index .Last 1}}</p> 
           </div>
@@ -190,7 +265,7 @@ const tmpl = `<html lang="en">
           </div>
         </div>
       </div>
-<div class="row">
+  <div class="row">
         <div class="col-sm-4">
           <div class="well">
             <p>Test: {{index .Test 9}}</p>
@@ -215,8 +290,8 @@ const tmpl = `<html lang="en">
       </div>
     </div>
   </div>
-</div>
-</body></html>`
+  </div>
+  </body></html>`
 
 func viewHandler(w http.ResponseWriter, r *http.Request) {
 	session, err := mgo.Dial("localhost:27017")
@@ -226,43 +301,18 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	defer session.Close()
 
 	session.SetMode(mgo.Monotonic, true)
-	c := session.DB("test").C("data")
-	//err = c.Insert(&data{"name of test a", "stat", "last"})
+	c := session.DB("local").C("data")
+	err = c.Insert(&graphData{"name of test a", false, "last", time.Now(), time.Now().Format("Jan 3: 7:55 PM")})
 	//if err != nil {
 	//	log.Fatal(err)
 	//}
-	result := data{}
+	result := graphData{}
 	err = c.Find(bson.M{"test": "name of test a"}).One(&result)
 	if err != nil {
 		log.Fatal(err)
 	}
 	fmt.Println(result.Test)
 
-	jsonFile, err := os.Open("sample.json")
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println("Successfully Opened users.json")
-	byteValue, _ := ioutil.ReadAll(jsonFile)
-
-	var udata udata
-
-	json.Unmarshal(byteValue, &udata)
-
-	var f compiledData
-	for i := 0; i < len(udata.UserData); i++ {
-		for e := 1; e <= 3; e++ {
-			if e == 1 {
-				f.Test = append(f.Test, udata.UserData[i].Test)
-			} else if e == 2 {
-				f.Status = append(f.Status, udata.UserData[i].Status)
-			} else if e == 3 {
-				f.Last = append(f.Status, udata.UserData[i].Last)
-			}
-		}
-	}
-	f.NumTest = len(udata.UserData)
-	//b, _ := template.ParseFiles("Index.html")
 	t := template.Must(template.New("tmpl").Parse(tmpl))
 
 	t.Execute(w, result)
